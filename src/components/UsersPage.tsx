@@ -1,4 +1,4 @@
-import { useUsers } from '../hooks/useUsers';
+import { useUsers } from '../hooks/useUsers/useUsers';
 import { UserRow } from './UserRow';
 
 
@@ -6,7 +6,7 @@ import { UserRow } from './UserRow';
 
 export const UsersPage = () => {
 
-  const { users, nextPage, prevPage } = useUsers();
+  const { state, handlers } = useUsers();
 
 
   return (
@@ -22,17 +22,17 @@ export const UsersPage = () => {
         </thead>
         <tbody>
           {
-            users.map( user => (
-              <UserRow key={ user.id } user={ user } />
-            ) )
+            state.users.map(user => (
+              <UserRow key={user.id} user={user} />
+            ))
           }
         </tbody>
       </table>
 
 
       <div>
-        <button onClick={ prevPage }>Prev</button>
-        <button onClick={ nextPage }>Next</button>
+        <button onClick={handlers.prevPage}>Prev</button>
+        <button onClick={handlers.nextPage}>Next</button>
 
       </div>
 
